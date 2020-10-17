@@ -12,7 +12,12 @@ WORKDIR /var/www
 
 COPY ./html/ .
 
+COPY run.sh /
+
+RUN chmod a+x /run.sh
+
 RUN chmod a+x *.pl
 
-CMD /etc/init.d/fcgiwrap start \
-    && nginx -g 'daemon off;'
+RUN ls -lths
+
+CMD ["/run.sh"]
